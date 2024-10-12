@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Violation Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Traffic Violation Calculator</h2>
+    <form id="violationForm">
+        <h3>Select Violations:</h3>
+
+        <h4>Category A - Traffic Violations</h4>
+        <label><input type="checkbox" class="violation" data-fine="450" data-jail="0"> A01. General Traffic Violations - $450 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="1000" data-jail="10"> A02. Failed or Refuse to Pay Any Fine Ticket - $1,000 Fine, 10 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="500" data-jail="10"> A03. Driving Motorvehicle Without Driving License - $500 Fine, 10 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="600" data-jail="12"> A04. Reckless Driving - $600 Fine, 12 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="400" data-jail="0"> A05. Speeding - $400 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="650" data-jail="0"> A06. Improper Vehicle Parking - $650 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="750" data-jail="25"> A07. Evading From Police Stop - $750 Fine, 25 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="550" data-jail="0"> A08. Illegal Modifications On Motorvehicles - $550 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="1250" data-jail="0"> A09. Unregistered Vehicles - $1,250 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="650" data-jail="25"> A10. Vehicular Endangerment - $650 Fine, 25 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="650" data-jail="0"> A11. Failure to Yield to Emergency Vehicles - $650 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="500" data-jail="0"> A12. Failure to Yield to A Roadblock - $500 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="0"> A13. Following An Emergency Vehicle - $350 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="600" data-jail="15"> A14. Driving Under Influence - $600 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="900" data-jail="25"> A15. Vehicular Manslaughter - $900 Fine, 25 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="1000" data-jail="0"> A16. Street Racing - $1,000 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="450" data-jail="0"> A17. Using Motorvehicle To Commit A Felony - $450 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="200" data-jail="0"> A18. Jaywalking - $200 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="650" data-jail="20"> A19. Hit and Run - $650 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="10"> A20. Altering or Changing a Vehicle Identification Number - $350 Fine, 10 days Jail</label><br>
+
+        <h4>Category B - Crimes Against Public Justice</h4>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="15"> B01. Obstruction of Justice - $350 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="650" data-jail="15"> B02. Emergency Hotline Abuse - $650 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="0"> B03. Wearing Government Attribute - $350 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="600" data-jail="15"> B04. Impersonating Government Staff - $600 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="2500" data-jail="15"> B05. Attempting to Bribe or Corrupt Any Public Officials - $2,500 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="550" data-jail="10"> B06. Giving False Information to the Police Officials - $550 Fine, 10 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="450" data-jail="15"> B07. Assaulting on Law Enforcement Officer - $450 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="850" data-jail="20"> B08. Murdering on Law Enforcement Officer - $850 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="3500" data-jail="60"> B09. Murdering A Public Official - $3,500 Fine, 60 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="650" data-jail="15"> B10. Forgery of Government Document - $650 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="850" data-jail="25"> B11. Contempt of Court - $850 Fine, 25 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="10"> B12. Resisting an Arrest - $250 Fine, 10 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="400" data-jail="15"> B13. Harbouring Criminals - $400 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="550" data-jail="0"> B14. Failure to Show Identity Card - $550 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="500" data-jail="50"> B15. Possessing of Fake License or Identity Card - $500 Fine, 50 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="1200" data-jail="20"> B16. Endanger on Law Enforcement Officer - $1,200 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="900" data-jail="15"> B17. Insulting on Law Enforcement Officer - $900 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="15000" data-jail="150"> B18. Corruption - $15,000 Fine, 150 days Jail</label><br>
+
+        <h4>Category C - Crimes Against Property</h4>
+        <label><input type="checkbox" class="violation" data-fine="500" data-jail="5"> C01. Trespassing - $500 Fine, 5 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="700" data-jail="10"> C02. Trespassing of Government Property - $700 Fine, 10 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="850" data-jail="0"> C03. Vandalism - $850 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="1250" data-jail="55"> C04. Arson - $1,250 Fine, 55 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="750" data-jail="25"> C05. Extortion - $750 Fine, 25 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="1500" data-jail="15"> C06. Using Property As Illegal Distribution - $1,500 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="0" data-jail="0"> C07. Sealed Property - Confiscation</label><br>
+        <label><input type="checkbox" class="violation" data-fine="0" data-jail="0"> C08. Failed To Pay Business Tax - Property Sealed</label><br>
+        <label><input type="checkbox" class="violation" data-fine="0" data-jail="0"> C09. Business Owner Commit Criminal Acts - Property Sealed or Confiscated</label><br>
+        <label><input type="checkbox" class="violation" data-fine="17000" data-jail="0"> C10. Unregistered Business Property - $17,000 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="550" data-jail="20"> C11. Burglary - $550 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="900" data-jail="20"> C12. Forgery - $900 Fine, 20 days Jail</label><br>
+
+        <h4>Category D - Crimes Against Public Space</h4>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="10"> D01. Initiating A Riot - $250 Fine, 10 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="5"> D02. Failing to Disperse After Ordered - $350 Fine, 5 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="200" data-jail="20"> D03. Participating in a Riot - $200 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="100" data-jail="0"> D04. Spitting in Public Space - $100 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="200" data-jail="0"> D05. Pee in Public - $200 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="0"> D06. Drunk in Public Space - $350 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="0"> D07. Vilification - $350 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="15"> D08. Hate Speech - $250 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="15"> D09. Disturbing Public Peace - $350 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="15"> D10. Vigilantism - $250 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="10"> D11. Brawl in Public Space - $250 Fine, 10 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="0"> D12. Accessories Disturbance - $350 Fine</label><br>
+        <label><input type="checkbox" class="violation" data-fine="450" data-jail="10"> D13. Animal Abuse - $450 Fine, 10 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="450" data-jail="10"> D14. Damaging Plants - $450 Fine, 10 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="150" data-jail="10"> D15. Public Intoxication - $150 Fine, 10 days Jail</label><br>
+
+        <h4>Category E - Crimes Against Person</h4>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="20"> E01. Intimidation - $250 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="550" data-jail="20"> E02. Assault - $550 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="600" data-jail="20"> E03. Assault with Deadly Weapons - $600 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="15"> E04. Battery - $250 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="450" data-jail="20"> E05. Aggravated Battery - $450 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="500" data-jail="20"> E06. Attempted Murdering - $500 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="650" data-jail="20"> E07. Murdering - $650 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="10"> E08. Performing Drive-By With A Deadly Weapons - $350 Fine, 10 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="450" data-jail="15"> E09. Committed a Group Criminal Assault - $450 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="15"> E10. Melee Robbery - $350 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="450" data-jail="15"> E11. Armed Robbery - $450 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="10"> E12. Grand Theft - $350 Fine, 10 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="400" data-jail="15"> E13. Grand Theft of Firearms - $400 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="500" data-jail="20"> E14. Kidnapping - $500 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="900" data-jail="30"> E15. Hostage Taking - $900 Fine, 30 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="800" data-jail="25"> E16. Human Trafficking - $800 Fine, 25 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="15"> E17. Rape - $250 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="200" data-jail="5"> E18. Sexual Harassment - $200 Fine, 5 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="300" data-jail="5"> E19. Performs Any Sexual Action in Public - $300 Fine, 5 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="300" data-jail="15"> E20. Blackmail - $300 Fine, 15 days Jail</label><br>
+
+        <h4>Category F - Control of Drugs</h4>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="15"> F01. Possession of Marijuana - $250 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="300" data-jail="20"> F02. Possession of a Controlled Substance - $300 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="15"> F03. Individual Under Influence - $250 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="650" data-jail="20"> F04. Selling or Distributing of Illegal Drugs - $650 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="750" data-jail="25"> F05. Drug Manufacturing - $750 Fine, 25 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="15"> F06. Being Present for Illegal Drug Use - $250 Fine, 15 days Jail</label><br>
+
+        <h4>Category G - Control of Weapons</h4>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="15"> G01. Possessing of Sharp or Blunt Weapons - $350 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="650" data-jail="20"> G02. Possessing of Illegal Firearms - $650 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="450" data-jail="15"> G03. Possessing Any Kind of Weapon Materials - $450 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="15"> G04. Brandishing of Firearm or Weapon - $350 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="750" data-jail="20"> G05. Weapon Dealer - $750 Fine, 20 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="550" data-jail="15"> G06. Weapon Trafficking - $550 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="250" data-jail="5"> G07. Possession of Body Armour - $250 Fine, 5 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="350" data-jail="15"> G08. Unlawful Discharge of Firearm or Weapon - $350 Fine, 15 days Jail</label><br>
+        <label><input type="checkbox" class="violation" data-fine="700" data-jail="20"> G09. Manufacture of Dangerous Weapon - $700 Fine, 20 days Jail</label><br>
+
+    </form>
+
+    <div class="result">
+        <p>Total Fine: $<span id="totalFine">0</span></p>
+        <p>Total Jail Time: <span id="totalJail">0</span> Minutes</p>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.violation');
+        const totalFineElement = document.getElementById('totalFine');
+        const totalJailElement = document.getElementById('totalJail');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                let totalFine = 0;
+                let totalJail = 0;
+
+                checkboxes.forEach(box => {
+                    if (box.checked) {
+                        totalFine += parseInt(box.getAttribute('data-fine'));
+                        totalJail += parseInt(box.getAttribute('data-jail'));
+                    }
+                });
+
+                totalFineElement.textContent = totalFine;
+                totalJailElement.textContent = totalJail;
+            });
+        });
+    </script>
+
+</body>
+</html>
