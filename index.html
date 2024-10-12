@@ -8,10 +8,43 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h2, h3, h4 {
+            color: #2c3e50;
         }
         .result {
             margin-top: 20px;
             font-weight: bold;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .reset {
+            background-color: #e74c3c;
+        }
+        .reset:hover {
+            background-color: #c0392b;
         }
     </style>
 </head>
@@ -135,34 +168,32 @@
         <label><input type="checkbox" class="violation" data-fine="350" data-jail="15"> G08. Unlawful Discharge of Firearm or Weapon - $350 Fine, 15 days Jail</label><br>
         <label><input type="checkbox" class="violation" data-fine="700" data-jail="20"> G09. Manufacture of Dangerous Weapon - $700 Fine, 20 days Jail</label><br>
 
+        <button type="button" id="calculateBtn">Calculate</button>
+        <button type="button" class="reset" id="resetBtn">Reset</button>
+
+        <div class="result" id="result"></div>
+        
     </form>
 
-    <div class="result">
-        <p>Total Fine: $<span id="totalFine">0</span></p>
-        <p>Total Jail Time: <span id="totalJail">0</span> Minutes</p>
-    </div>
 
     <script>
-        const checkboxes = document.querySelectorAll('.violation');
-        const totalFineElement = document.getElementById('totalFine');
-        const totalJailElement = document.getElementById('totalJail');
+        document.getElementById('calculateBtn').onclick = function() {
+            let totalFine = 0;
+            let totalJail = 0;
 
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', () => {
-                let totalFine = 0;
-                let totalJail = 0;
-
-                checkboxes.forEach(box => {
-                    if (box.checked) {
-                        totalFine += parseInt(box.getAttribute('data-fine'));
-                        totalJail += parseInt(box.getAttribute('data-jail'));
-                    }
-                });
-
-                totalFineElement.textContent = totalFine;
-                totalJailElement.textContent = totalJail;
+            const checkboxes = document.querySelectorAll('.violation:checked');
+            checkboxes.forEach((checkbox) => {
+                totalFine += parseInt(checkbox.getAttribute('data-fine')) || 0;
+                totalJail += parseInt(checkbox.getAttribute('data-jail')) || 0;
             });
-        });
+
+            document.getElementById('result').textContent = `Total Fine: $${totalFine}, Total Jail Time: ${totalJail} days`;
+        };
+
+        document.getElementById('resetBtn').onclick = function() {
+            document.getElementById('violationForm').reset();
+            document.getElementById('result').textContent = '';
+        };
     </script>
 
 </body>
